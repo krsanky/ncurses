@@ -10,6 +10,9 @@ triangle: triangle.c
 diag: $@.c 
 	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
+fun: $@.c 
+	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
+
 all: curs
 
 indent:
@@ -18,6 +21,6 @@ indent:
 
 .PHONY: clean indent all
 clean:
-	rm -f a.out $(PRG) triangle curs diag main
+	rm -f a.out $(PRG) triangle curs diag main fun
 
 
