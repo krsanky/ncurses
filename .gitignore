@@ -1,4 +1,6 @@
+*.BAK
 main
 ball
-libtcod/
 diag
+fun
+simple_init_main

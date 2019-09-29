@@ -4,34 +4,26 @@
 #include <curses.h>
 
 /*
-				The screen (stdscr)
-(0,0)*----------------------------------* (0, COLUMNS-1)
-	 |                                  |
-	 |                                  |
-	 |    (y0,x0)                       |
-	 |      ---------------             |
-	 |      |             |             |
-	 |      |             |             |
-	 |      |     win     |nlines       |
-	 |      |             |             |
-	 |      |             |             |
-	 |      |             |             |
-	 |      ---------------             |
-	 |          ncols                   |
-	 |                                  |
-	 *----------------------------------*
-(LINES-1, 0)                              (LINES-1, COLUMNS-1) 
-*/
+ * The screen (stdscr) (0,0)*----------------------------------* (0,
+ * COLUMNS-1) |                                  | | | |    (y0,x0)
+ * | |      --------------- | |      |             |             | |      |
+ * | | |      |     win     |nlines       | |      |             | | |      |
+ * |             | |      |             | | |      ---------------
+ * | |          ncols | |                                  |
+ * ----------------------------------* (LINES-1, 0)
+ * (LINES-1, COLUMNS-1)
+ */
 
 
 void
 show_status(char *s)
 {
-	// show a color rainbow decay for how hot the updates are
+	//show a color rainbow decay for how hot the updates are
 
 	int		x, y;
 	int		max_x, max_y;
-	getyx(stdscr, y, x);
+	getyx
+		(stdscr, y, x);
 	getmaxyx(stdscr, max_y, max_x);
 	move(3, 10);
 	printw("COLUMNS:%d LINES:%d", max_x, max_y);
@@ -44,7 +36,7 @@ int
 main()
 {
 	int		max_x, max_y;
-	
+
 	initscr();
 	getmaxyx(stdscr, max_y, max_x);
 	//cbreak();
@@ -57,13 +49,13 @@ main()
 	refresh();
 	sleep(2);
 
-	int		x, y = 0;  
-	for (x=0 ;x<max_x; x++) {
+	int		x, y = 0;
+	for (x = 0; x < max_x; x++) {
 		mvaddch(y, x, '*');
 		y += 1;
 		usleep(1000);
 		refresh();
-		
+
 	}
 
 
@@ -71,4 +63,3 @@ main()
 	endwin();
 	return EXIT_SUCCESS;
 }
-

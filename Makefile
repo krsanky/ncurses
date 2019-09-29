@@ -1,8 +1,7 @@
-PRG=		curs
 CFLAGS=		-W -Wall -O2 -std=c99 -g
 LDFLAGS=	-lncurses
 
-all: $(BINS)
+all: fun
 
 triangle: triangle.c 
 	$(CC) $(CFLAGS) triangle.c $(LDFLAGS) -o triangle
@@ -10,10 +9,8 @@ triangle: triangle.c
 diag: $@.c 
 	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
-fun: $@.c 
-	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
-
-all: curs
+fun: $@.c statw.h statw.c
+	$(CC) $(CFLAGS) $@.c statw.c $(LDFLAGS) -o $@
 
 indent:
 	@echo "indenting all code..."
@@ -21,6 +18,6 @@ indent:
 
 .PHONY: clean indent all
 clean:
-	rm -f a.out $(PRG) triangle curs diag main fun
+	rm -f a.out $(PRG) triangle curs diag main fun simple_init_main
 
 

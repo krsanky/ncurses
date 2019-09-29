@@ -3,7 +3,7 @@
 
 #define ITERMAX 10000
 
-int 
+int
 main(void)
 {
 	long		iter;
