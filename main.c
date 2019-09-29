@@ -1,17 +1,20 @@
+#include <stdlib.h>
 #include <ncurses.h>
-#include <unistd.h>
 
-int 
-main(int argc, char *argv[]) {
-
+int
+main(int argc, char **argv)
+{
 	initscr();
-	noecho();
-	curs_set(FALSE);
-
-	mvprintw(0, 0, "Hello, world!");
+	printw("hello curses...\n");
+	printw("LINES:%d COLS:%d\n", LINES, COLS);
+	printw("random:%ld\n", random());
+	printw("random3:%ld\n", random()%3);
+	printw("random COLS:%ld\n", random()%COLS);
+	printw("random LINES:%ld\n", random()%LINES);
 	refresh();
-
-	sleep(1);
-
+	getch();
 	endwin();
+
+	return EXIT_SUCCESS;
 }
+

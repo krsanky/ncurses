@@ -1,23 +1,23 @@
-CSC=		/usr/local/bin/csc5
-#CSCFLAGS+=	-static -L
-LDFLAGS+=	-lncurses
+PRG=		curs
+CFLAGS=		-W -Wall -O2 -std=c99 -g
+LDLIBS=		-lncurses
 
-all: c1 
+all: $(BINS)
 
-c1: $@.o 
-	${CSC} ${CSCFLAGS} $@.o -o $@
+triangle: triangle.c 
+	$(CC) $(CFLAGS) triangle.c $(LDLIBS) -o triangle
 
-foo: $@.o bar.o 
-	${CSC} $@.o bar.o -o $@
+diag: $@.c 
+	$(CC) $(CFLAGS) $@.c $(LDLIBS) -o $@
 
-.SUFFIXES: .scm .o
-.scm.o:
-	${CSC} -c $<
+all: curs
 
+indent:
+	@echo "indenting all code..."
+	./indent-all.sh
+
+.PHONY: clean indent all
 clean:
-	rm -f *.o *.so *.link *.import.scm *.out
-	rm -f c1
-	rm -f main
+	rm -f a.out $(PRG) triangle curs diag main
 
-.PHONY: clean all
 
