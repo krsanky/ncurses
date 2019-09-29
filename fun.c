@@ -41,7 +41,6 @@ main_stuff() {
 		y += 1;
 		usleep(1000);
 		refresh();
-
 	}
 }
 
@@ -49,14 +48,49 @@ int
 main()
 {
 	WINDOW		*my_statw;
+	int			ch;
+	int			height, width;
+	int			starty, startx;
+
+	height = 3;
+	width = 10;
+
+	starty = (LINES - height) / 2;
+	startx = (COLS - width) / 2;
 
 	initscr();
 	cbreak();
-	noecho();
+	/*noecho();*/
 	keypad(stdscr, TRUE);
-	clear();
+	/*clear();*/
 
-	main_stuff();
+
+	printw("Press F1 to exit");
+	refresh();
+	my_statw = statw_create(height, width, starty, startx);
+
+	while ((ch = getch()) != KEY_F(1)) {
+		switch (ch) {
+		case KEY_LEFT:
+			statw_delete(my_statw);
+			my_statw = statw_create(height, width, starty, --startx);
+			break;
+		case KEY_RIGHT:
+			statw_delete(my_statw);
+			my_statw = statw_create(height, width, starty, ++startx);
+			break;
+		case KEY_UP:
+			statw_delete(my_statw);
+			my_statw = statw_create(height, width, --starty, startx);
+			break;
+		case KEY_DOWN:
+			statw_delete(my_statw);
+			my_statw = statw_create(height, width, ++starty, startx);
+			break;
+		}
+	}
+
+/*	main_stuff();*/
 
 	endwin();
 	return EXIT_SUCCESS;
