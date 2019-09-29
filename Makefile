@@ -19,5 +19,6 @@ indent:
 .PHONY: clean indent all
 clean:
 	rm -f a.out $(PRG) triangle curs diag main fun simple_init_main
+	rm -f *.BAK
 
 

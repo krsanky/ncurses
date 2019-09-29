@@ -25,19 +25,12 @@
  * (LINES-1, 0)                              (LINES-1, COLS-1) 
  */
 
-int
-main()
-{
+void
+main_stuff() {
 	int		max_x, max_y;
 
-	initscr();
-	cbreak();
-	noecho();
-	keypad(stdscr, TRUE);
-	/* curs_set(FALSE); */
-	clear();
-
 	getmaxyx(stdscr, max_y, max_x);
+
 	show_status("asdasd123");
 	refresh();
 	sleep(2);
@@ -50,8 +43,20 @@ main()
 		refresh();
 
 	}
+}
 
+int
+main()
+{
+	WINDOW		*my_statw;
 
+	initscr();
+	cbreak();
+	noecho();
+	keypad(stdscr, TRUE);
+	clear();
+
+	main_stuff();
 
 	endwin();
 	return EXIT_SUCCESS;
