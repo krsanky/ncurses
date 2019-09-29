@@ -27,6 +27,8 @@
 void
 show_status(char *s)
 {
+	// show a color rainbow decay for how hot the updates are
+
 	int		x, y;
 	int		max_x, max_y;
 	getyx(stdscr, y, x);
@@ -41,45 +43,32 @@ show_status(char *s)
 int
 main()
 {
-	int		max_y, max_x;
-
+	int		max_x, max_y;
+	
 	initscr();
+	getmaxyx(stdscr, max_y, max_x);
 	//cbreak();
 	noecho();
-	curs_set(FALSE);
-
-	getmaxyx(stdscr, max_y, max_x);
+	//curs_set(FALSE);
 
 	//clear();
-	mvprintw(0, 0, "Heloow asdqw");
+	//mvprintw(0, 0, "Heloow asdqw");
 	show_status("asdasd123");
 	refresh();
 	sleep(2);
 
-/*
-To move the cursor to a new position on a window, use the function
-int wmove(WINDOW *win, int y, int x)
-    wmove(win, y, x);
-where (x, y) are the coordinates of the new position in the window.
-If the window has nlines lines and ncolumns columns, then
-	0 <= y < nlines 
-	0 <= x < ncolumns
-Refresh.  The actual cursor motion is not shown on the screen untill
-you do a wrefresh(win).
-
-move(y, x) is equivalent to the wmove(stdscr, y, x).
-
-then addch(ch);
-*/
-
-
-
-
+	int		x, y = 0;  
+	for (x=0 ;x<max_x; x++) {
+		mvaddch(y, x, '*');
+		y += 1;
+		usleep(1000);
+		refresh();
+		
+	}
 
 
 
 	endwin();
-
 	return EXIT_SUCCESS;
 }
 
