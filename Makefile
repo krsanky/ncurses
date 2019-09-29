@@ -1,14 +1,14 @@
 PRG=		curs
 CFLAGS=		-W -Wall -O2 -std=c99 -g
-LDLIBS=		-lncurses
+LDFLAGS=	-lncurses
 
 all: $(BINS)
 
 triangle: triangle.c 
-	$(CC) $(CFLAGS) triangle.c $(LDLIBS) -o triangle
+	$(CC) $(CFLAGS) triangle.c $(LDFLAGS) -o triangle
 
 diag: $@.c 
-	$(CC) $(CFLAGS) $@.c $(LDLIBS) -o $@
+	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
 all: curs
 
