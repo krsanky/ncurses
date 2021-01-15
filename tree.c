@@ -6,7 +6,12 @@
 void
 draw_trunk()
 {
-	move(LINES, (COLS/2)-10);
+	move(LINES-1, (COLS/2)-10);
+	addch('%');
+	printw("*********");
+	move(LINES-2, (COLS/2)-10);
+	addch('%');
+	printw("*********");
 }
 
 void
